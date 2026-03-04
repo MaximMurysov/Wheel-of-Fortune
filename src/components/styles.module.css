@@ -3,3 +3,38 @@
   padding: 0;
   box-sizing: border-box;
 }
+.fortune {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #e6f7f5;
+}
+.fortuneTitle {
+  color: #1f2d2d;
+  margin-bottom: 20px;
+}
+.fortuneContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+}
+
+.wheel {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #2cb1a6 0deg 60deg,
+    #ffffff 60deg 120deg,
+    #2cb1a6 120deg 180deg,
+    #ffffff 180deg 240deg,
+    #2cb1a6 240deg 300deg,
+    #ffffff 300deg 360deg
+  );
+  transition: transform 3s ease-out;
+}
