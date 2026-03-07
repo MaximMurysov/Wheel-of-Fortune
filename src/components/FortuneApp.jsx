@@ -1,5 +1,6 @@
 import styles from "./styles.module.css";
 import { useState, useEffect } from "react";
+import { VscTriangleDown } from "react-icons/vsc";
 const offers = [
   "Cleaning ",
   "Rent 10 rub",
@@ -14,13 +15,27 @@ function Fortune() {
   const [spinning, setSpinning] = useState(false);
   const handleSpin = () => {
     if (spinning) return;
+
     const randomIndex = Math.floor(Math.random() * offers.length);
+
     const segmentAngle = 360 / offers.length;
+
+    const offsetInsideSegment = Math.random() * segmentAngle;
+
+    const targetRotation = randomIndex * segmentAngle + offsetInsideSegment;
+
     const extraSpins = 360 * 5;
-    const newRotation = extraSpins + (360 - randomIndex * segmentAngle);
+
+    const newRotation = rotation + extraSpins + (360 - targetRotation);
+
+    const finalAngle = newRotation % 360;
+    const winningIndex =
+      Math.floor((360 - finalAngle) / segmentAngle) % offers.length;
+
     setSpinning(true);
-    setRotation(rotation + newRotation);
-    setSelectedOffer(offers[randomIndex]);
+    setSelectedOffer(null);
+    setRotation(newRotation);
+    setTimeout(() => setSelectedOffer(offers[winningIndex]), 3000);
     setTimeout(() => setSpinning(false), 3000);
   };
   return (
@@ -30,10 +45,23 @@ function Fortune() {
         <div
           className={styles.wheel}
           style={{ transform: `rotate(${rotation}deg)` }}
-        ></div>
+        >
+          {offers.map((elem, index) => (
+            <div
+              key={index}
+              className={styles.segment}
+              style={{
+                transform: `rotate(${index * (360 / offers.length)}deg)`,
+              }}
+            >
+              <p className={styles.segmentText}>{elem}</p>
+            </div>
+          ))}
+        </div>
+        <VscTriangleDown className={styles.pointer} size={40} color="#1f2d2d" />
       </div>
-      <button disabled={spinning} onClick={handleSpin}>
-        Spin
+      <button disabled={spinning} onClick={handleSpin} className={styles.spin}>
+        Q
       </button>
       {selectedOffer && (
         <p className={styles.result}>You won {selectedOffer}</p>

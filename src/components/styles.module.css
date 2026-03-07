@@ -22,11 +22,12 @@
   width: 600px;
   height: 600px;
   border-radius: 50%;
+  position: relative;
 }
 
 .wheel {
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
   background: conic-gradient(
     #2cb1a6 0deg 60deg,
@@ -36,5 +37,55 @@
     #2cb1a6 240deg 300deg,
     #ffffff 300deg 360deg
   );
+  position: relative;
   transition: transform 3s ease-out;
+  overflow: hidden;
+  border: 2px rgba(0, 0, 0, 0.664) solid;
+}
+.pointer {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  left: 50%;
+  transform-origin: 0% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.segmentText {
+  display: flex;
+  position: absolute;
+  left: 25%;
+  color: #1f2d2d;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  width: 80px;
+  word-wrap: break-word;
+
+  transform: rotate(130deg);
+  white-space: nowrap;
+}
+.spin {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  bottom: 397px;
+  border: none;
+  background-color: #2cb1a6;
+  z-index: 1;
+  border: 1px whitesmoke solid;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
 }
