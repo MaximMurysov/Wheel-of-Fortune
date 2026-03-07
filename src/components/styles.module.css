@@ -22,6 +22,7 @@
   color: #1f2d2d;
   margin-bottom: 20px;
   font-weight: bold;
+  font-size: clamp(20px, 5vw, 28px);
 }
 .fortuneContainer {
   display: flex;
@@ -34,8 +35,12 @@
 }
 
 .wheel {
-  width: 500px;
-  height: 500px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  width: min(90vw, 500px);
+  height: min(90vw, 500px);
   border-radius: 50%;
   background: conic-gradient(
     #2cb1a6 0deg 60deg,
@@ -53,10 +58,12 @@
 }
 .pointer {
   position: absolute;
-  top: 39px;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
+  width: clamp(30px, 8vw, 40px);
+  height: auto;
 }
 .segment {
   position: absolute;
@@ -130,4 +137,36 @@
   align-items: center;
   justify-content: center;
   margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  .fortuneContainer {
+    width: 100%;
+  }
+
+  .segmentText {
+    left: 10%;
+    width: 60px;
+    font-size: 9px;
+  }
+
+  .spin {
+    bottom: 10%;
+  }
+}
+
+@media (min-width: 768px) {
+  .fortuneContainer {
+    width: 600px;
+    height: 600px;
+  }
+
+  .wheel {
+    width: 500px;
+    height: 500px;
+  }
+
+  .spin {
+    bottom: 279px;
+  }
 }
