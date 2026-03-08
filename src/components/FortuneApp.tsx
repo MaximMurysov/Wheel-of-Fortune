@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import { useState, useEffect } from "react";
 import { VscTriangleDown } from "react-icons/vsc";
-const offers: string[] = [
+const OFFERS: string[] = [
   "Cleaning",
   "Rent 10 rub",
   "discount 30%",
@@ -9,6 +9,8 @@ const offers: string[] = [
   "discount 90%",
   "block and cleaning sticks",
 ];
+const SPIN_DURATION = 7500;
+const EXTRA_SPINS = 5;
 function Fortune() {
   const [selectedOffer, setSelectedOffer] = useState<string | null>(null);
   const [rotation, setRotation] = useState(0);
@@ -16,28 +18,28 @@ function Fortune() {
   const handleSpin = (): void => {
     if (spinning) return;
 
-    const randomIndex: number = Math.floor(Math.random() * offers.length);
+    const randomIndex: number = Math.floor(Math.random() * OFFERS.length);
 
-    const segmentAngle: number = 360 / offers.length;
+    const segmentAngle: number = 360 / OFFERS.length;
 
     const offsetInsideSegment: number = Math.random() * segmentAngle;
 
     const targetRotation: number =
       randomIndex * segmentAngle + offsetInsideSegment;
 
-    const extraSpins: number = 360 * 5;
+    const extraSpins: number = 360 * EXTRA_SPINS;
 
     const newRotation: number = rotation + extraSpins + (360 - targetRotation);
 
     const finalAngle: number = newRotation % 360;
     const winningIndex: number =
-      Math.floor((360 - finalAngle) / segmentAngle) % offers.length;
+      Math.floor((360 - finalAngle) / segmentAngle) % OFFERS.length;
 
     setSpinning(true);
     setSelectedOffer(null);
     setRotation(newRotation);
-    setTimeout(() => setSelectedOffer(offers[winningIndex]), 7500);
-    setTimeout(() => setSpinning(false), 3000);
+    setTimeout(() => setSelectedOffer(OFFERS[winningIndex]), SPIN_DURATION);
+    setTimeout(() => setSpinning(false), SPIN_DURATION);
   };
   return (
     <div className={styles.fortune}>
@@ -50,12 +52,12 @@ function Fortune() {
                 className={styles.wheel}
                 style={{ transform: `rotate(${rotation}deg)` }}
               >
-                {offers.map((elem: string, index: number) => (
+                {OFFERS.map((elem: string, index: number) => (
                   <div
                     key={index}
                     className={styles.segment}
                     style={{
-                      transform: `rotate(${index * (360 / offers.length)}deg)`,
+                      transform: `rotate(${index * (360 / OFFERS.length)}deg)`,
                     }}
                   >
                     <p className={styles.segmentText}>{elem}</p>
