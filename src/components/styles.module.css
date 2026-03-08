@@ -141,6 +141,17 @@
   margin-top: 20px;
 }
 
+@media (max-width: 768px) {
+  .wheel {
+    transition: transform 7s ease-out; /* 7 секунд, но проще */
+  }
+}
+@media (max-width: 480px) {
+  .wheel {
+    transition: transform 7s linear; /* Тоже 7 секунд! */
+  }
+}
+
 @media (max-width: 360px) {
   .fortuneTitle {
     top: 160px;
@@ -171,7 +182,6 @@
   }
 }
 
-/* СПЕЦИАЛЬНЫЕ КЕЙСЫ */
 @media (min-width: 386px) and (max-width: 394px) {
   .pointer {
     top: 116px;
