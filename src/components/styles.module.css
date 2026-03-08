@@ -17,6 +17,7 @@
   justify-content: center;
   min-height: 100vh;
   background-color: #e6f7f5;
+  padding: 20px;
 }
 .fortuneTitle {
   color: #1f2d2d;
@@ -58,7 +59,7 @@
 }
 .pointer {
   position: absolute;
-  top: 5%;
+  top: 6.4%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -139,34 +140,35 @@
   margin-top: 20px;
 }
 
-@media (max-width: 480px) {
-  .fortuneContainer {
-    width: 100%;
+/* Для очень маленьких экранов */
+@media (max-width: 375px) {
+  .fortuneTitle {
+    position: absolute;
+    top: 100px;
   }
 
-  .segmentText {
-    left: 10%;
-    width: 60px;
-    font-size: 9px;
-  }
-
-  .spin {
-    bottom: 10%;
+  .pointer {
+    top: 20.4%;
   }
 }
 
-@media (min-width: 768px) {
-  .fortuneContainer {
-    width: 600px;
-    height: 600px;
+@media (min-width: 376px) and (max-width: 430px) {
+  .fortuneTitle {
+    position: absolute;
+    top: 204px;
   }
 
-  .wheel {
-    width: 500px;
-    height: 500px;
+  .pointer {
+    top: 16.2%;
   }
+}
 
-  .spin {
-    bottom: 279px;
+@media (min-width: 431px) and (max-width: 480px) {
+  .fortuneTitle {
+    position: absolute;
+    top: 228px;
+  }
+  .pointer {
+    top: 16.2%;
   }
 }
