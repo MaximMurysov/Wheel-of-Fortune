@@ -143,12 +143,12 @@
 
 @media (max-width: 768px) {
   .wheel {
-    transition: transform 7s ease-out; /* 7 секунд, но проще */
+    transition: transform 7s cubic-bezier(0.2, 0.9, 0.3, 1.2);
   }
 }
 @media (max-width: 480px) {
   .wheel {
-    transition: transform 7s linear; /* Тоже 7 секунд! */
+    transition: transform 7s cubic-bezier(0.1, 0.8, 0.2, 1);
   }
 }
 
@@ -200,5 +200,17 @@
   }
   .pointer {
     top: 16.2%;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 415px) {
+  .fortuneTitle {
+    top: 190px;
+  }
+  .pointer {
+    top: 104px;
+  }
+  .fortuneContainer {
+    right: auto;
   }
 }
