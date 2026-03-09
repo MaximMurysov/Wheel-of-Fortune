@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { VscTriangleDown } from "react-icons/vsc";
 const OFFERS: string[] = [
   "Cleaning",
@@ -18,28 +18,29 @@ function Fortune() {
   const handleSpin = (): void => {
     if (spinning) return;
 
-    const randomIndex: number = Math.floor(Math.random() * OFFERS.length);
+    const randomIndex = Math.floor(Math.random() * OFFERS.length);
 
-    const segmentAngle: number = 360 / OFFERS.length;
+    const segmentAngle = 360 / OFFERS.length;
 
-    const offsetInsideSegment: number = Math.random() * segmentAngle;
+    const offsetInsideSegment = Math.random() * segmentAngle;
 
-    const targetRotation: number =
-      randomIndex * segmentAngle + offsetInsideSegment;
+    const targetRotation = randomIndex * segmentAngle + offsetInsideSegment;
 
-    const extraSpins: number = 360 * EXTRA_SPINS;
+    const extraSpins = 360 * EXTRA_SPINS;
 
-    const newRotation: number = rotation + extraSpins + (360 - targetRotation);
+    const newRotation = rotation + extraSpins + (360 - targetRotation);
 
-    const finalAngle: number = newRotation % 360;
-    const winningIndex: number =
+    const finalAngle = newRotation % 360;
+    const winningIndex =
       Math.floor((360 - finalAngle) / segmentAngle) % OFFERS.length;
 
     setSpinning(true);
     setSelectedOffer(null);
     setRotation(newRotation);
-    setTimeout(() => setSelectedOffer(OFFERS[winningIndex]), SPIN_DURATION);
-    setTimeout(() => setSpinning(false), SPIN_DURATION);
+    setTimeout(() => {
+      setSelectedOffer(OFFERS[winningIndex]);
+      setSpinning(false);
+    }, SPIN_DURATION);
   };
   return (
     <div className={styles.fortune}>

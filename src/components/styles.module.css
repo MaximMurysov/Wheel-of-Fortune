@@ -24,16 +24,15 @@
   margin-bottom: 20px;
   font-weight: bold;
   font-size: clamp(20px, 5vw, 28px);
-  position: absolute;
 }
 .fortuneContainer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 600px;
-  min-height: 600px;
-  border-radius: 50%;
-  position: relative;
+
+  width: min(90vw, 520px);
+  aspect-ratio: 1;
 }
 
 .wheel {
@@ -41,8 +40,8 @@
   backface-visibility: hidden;
   transform: translateZ(0);
   will-change: transform;
-  width: min(90vw, 500px);
-  height: min(90vw, 500px);
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background: conic-gradient(
     #2cb1a6 0deg 60deg,
@@ -53,19 +52,16 @@
     #ffffff 300deg 360deg
   );
   position: relative;
-  transition: transform 3s ease-out;
   overflow: hidden;
   border: 2px rgba(0, 0, 0, 0.664) solid;
   transition: transform 7s cubic-bezier(0.05, 0.15, 0.2, 1);
 }
 .pointer {
   position: absolute;
-  top: 6.4%;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  width: clamp(30px, 8vw, 40px);
-  height: auto;
 }
 .segment {
   position: absolute;
@@ -92,10 +88,12 @@
 }
 .spin {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  bottom: 279px;
   border: none;
   background-color: #2cb1a6;
   z-index: 1;
@@ -105,6 +103,7 @@
   font-weight: bold;
   color: white;
 }
+
 .result {
   position: absolute;
   top: 50%;
@@ -149,68 +148,5 @@
 @media (max-width: 480px) {
   .wheel {
     transition: transform 7s cubic-bezier(0.1, 0.8, 0.2, 1);
-  }
-}
-
-@media (max-width: 360px) {
-  .fortuneTitle {
-    top: 160px;
-  }
-  .pointer {
-    top: 21.5%;
-  }
-}
-
-@media (min-width: 361px) and (max-width: 375px) {
-  .fortuneTitle {
-    top: 100px;
-  }
-  .pointer {
-    top: 20.4%;
-  }
-}
-
-@media (min-width: 376px) and (max-width: 430px) {
-  .fortuneTitle {
-    top: 204px;
-  }
-  .pointer {
-    top: 16.2%;
-  }
-  .fortuneContainer {
-    right: 0;
-  }
-}
-
-@media (min-width: 386px) and (max-width: 394px) {
-  .pointer {
-    top: 116px;
-  }
-}
-
-@media (max-width: 412px) and (min-width: 395px) {
-  .pointer {
-    top: 17.4%;
-  }
-}
-
-@media (min-width: 431px) and (max-width: 480px) {
-  .fortuneTitle {
-    top: 228px;
-  }
-  .pointer {
-    top: 16.2%;
-  }
-}
-
-@media (min-width: 414px) and (max-width: 415px) {
-  .fortuneTitle {
-    top: 190px;
-  }
-  .pointer {
-    top: 104px;
-  }
-  .fortuneContainer {
-    right: auto;
   }
 }
